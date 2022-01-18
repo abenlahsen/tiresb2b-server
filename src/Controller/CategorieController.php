@@ -29,7 +29,7 @@ class CategorieController extends BaseController
      * @Route("/admin/categorie",name="app_admin_categories")
      * @IsGranted("ROLE_WRITER")
      */
-    public function users(){
+    public function categories(){
         $categories = $this->categorieRepository->findAll();
         return $this->render("admin/categorie/categorie.html.twig",["categories"=>$categories]);
     }

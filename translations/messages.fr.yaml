@@ -1,5 +1,6 @@
 backend:
   global:
+    company_name : AUTO LINK B2B
     welcome: Bienvenue
     you_are_logged: Vous êtes connecté en tant que
     leave_impersonate: Quitter l'impersonnation
@@ -12,11 +13,19 @@ backend:
     please_confirm: Veuillez confirmer votre action?
     choice_action: Selectionner une action
     no_item_selected: Aucun article selectionné
+    btn_add : Ajouter
+    action_select:
+      none: Action de groupe
+      enable: Activer
+      disable: Désactiver
+      delete: Supprimer
+      submit: Go!!
   menu:
     home: Accueil
     user: Utilisateur
     manage: Gérer
-    categories: Categorie
+    categories: Catégories
+    catalog: Catalogue
     blog: Blog
     history: Historique
   role:
@@ -46,3 +55,44 @@ backend:
     changed_password: Mot de passe modifié
     add_user: Utilisateur ajouté
     modify_user: Utilisateur modifié
+  category:
+    listing: Listing
+    list_items: Liste des catégories
+    table:
+      label: Libellé
+      parent: Catégorie parente
+      status: Etat ?
+      edit: Modifier
+      delete: Supprimer
+    form:
+      title: Catégorie
+      cancel: Annuler
+      save: Enregister
+  blog:
+    listing: Listing
+    list_items: Liste des posts du Blog
+    table:
+      title: Titre
+      creation_date: Date de création
+      publication_date: Date de publication
+      status: Etat ?
+      edit: Modifier
+      delete: Supprimer
+      preview: Visualiser
+  catalog:
+    listing: Listing
+    list_items: Liste des pneus en stock à date DD/MM/YYYY HH:MM:SS
+    table:
+      reference: Dimension
+      brand: Marque & Profil
+      qty: Quantité
+      origin : Made in
+      dot : DOT
+      price: Prix
+      edit: Modifier
+      status: Etat ?
+      delete: Supprimer
+    form:
+      title: Catégorie
+      cancel: Annuler
+      save: Enregister

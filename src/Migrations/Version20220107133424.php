@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200729164730 extends AbstractMigration
+final class Version20220107133424 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,8 @@ final class Version20200729164730 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        //$this->addSql('ALTER TABLE role ADD libelle VARCHAR(100) NOT NULL');
+        $this->addSql('CREATE TABLE catalog (id INT AUTO_INCREMENT NOT NULL, category_id INT NOT NULL, name VARCHAR(255) NOT NULL, brand VARCHAR(255) NOT NULL, quantity SMALLINT DEFAULT NULL, price DOUBLE PRECISION DEFAULT NULL, width INT NOT NULL, height INT NOT NULL, diameter INT NOT NULL, load_index INT NOT NULL, speed_index VARCHAR(255) NOT NULL, INDEX IDX_1B2C324712469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE catalog ADD CONSTRAINT FK_1B2C324712469DE2 FOREIGN KEY (category_id) REFERENCES categorie (id)');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +31,6 @@ final class Version20200729164730 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE role DROP libelle');
+        $this->addSql('DROP TABLE catalog');
     }
 }

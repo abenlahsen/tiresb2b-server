@@ -3,7 +3,7 @@
     <div class="col-md-3 left_col menu_fixed">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-                <a href="{{ path('app_admin_index') }}" class="site_title"><i class="fa fa-paw"></i> <span>ONEHEALTH</span></a>
+                <a href="{{ path('app_admin_index') }}" class="site_title"><i class="fa fa-magnet"></i> <span>{{ "backend.global.company_name"|trans }}</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -38,11 +38,23 @@
                         </li>
                         {% endif %}
                         {% if is_granted("ROLE_WRITER") %}
+
+                        <!-- CATEGORIE menu -->
                         <li><a><i class="fa fa-bookmark"></i>{{ "backend.menu.categories"|trans }} <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ path('app_admin_categories') }}">{{ "backend.menu.manage"|trans }}</a></li>
                             </ul>
                         </li>
+
+                        <!-- CATALOG menu -->
+                        <li><a><i class="fa fa-database"></i>{{ "backend.menu.catalog"|trans }} <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{ path('app_admin_catalog') }}">{{ "backend.menu.manage"|trans }}</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- BLOG menu -->
+                        <!--
                         <li><a><i class="fa fa-clipboard"></i> {{ "backend.menu.blog"|trans }} <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ path('app_admin_blogPosts') }}">{{ "backend.menu.manage"|trans }}</a></li>
@@ -51,6 +63,7 @@
                                 {% endif %}
                             </ul>
                         </li>
+                        -->
                         {% endif %}
                     </ul>
                 </div>

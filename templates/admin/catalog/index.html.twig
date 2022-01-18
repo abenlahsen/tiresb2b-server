@@ -4,7 +4,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h5> {{ "backend.blog.listing"|trans }} </h5>
+                <h5>{{ "backend.catalog.listing"|trans }}</h5>
             </div>
         </div>
 
@@ -14,11 +14,13 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>{{ "backend.blog.list_items"|trans }}</h2>
+                        <h2>{{ "backend.catalog.list_items"|trans }}</h2>
+                        <!--
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a href="{{ path('app_admin_new_blogPosts') }}" class="btn btn-success">{{ "backend.btn_add"|trans }}</a>
+                            <li><a href="{{ path('app_admin_new_catalog') }}" class="btn btn-success">{{ "backend.global.btn_add"|trans }}</a>
                             </li>
                         </ul>
+                        -->
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -42,39 +44,51 @@
                                 {% if is_granted("ROLE_EDITORIAL") %}
                                     <th><input type="checkbox" id="select_all" name="select_all"></th>
                                 {% endif %}
-                                <th>{{ "backend.blog.table.title"|trans }}</th>
-                                <th>{{ "backend.blog.table.creation_date"|trans }}</th>
-                                <th>{{ "backend.blog.table.publication_date"|trans }}</th>
-                                <th>{{ "backend.blog.table.edit"|trans }}</th>
+                                <th>{{ "backend.catalog.table.reference"|trans }}</th>
+                                <!-- <th>{{ "backend.catalog.table.brand"|trans }}</th> -->
+                                <th>{{ "backend.category.form.title"|trans }}</th>
+                                <th>{{ "backend.catalog.table.qty"|trans }}</th>
+                                <th>{{ "backend.catalog.table.origin"|trans }}</th>
+                                <th>{{ "backend.catalog.table.dot"|trans }}</th>
+                                <th>{{ "backend.catalog.table.price"|trans }}</th>
+                                
                                 {% if is_granted("ROLE_EDITORIAL") %}
-                                    <th>{{ "backend.blog.table.status"|trans }}</th>
-                                    <th>{{ "backend.blog.table.delete"|trans }}</th>
+                                    <th>{{ "backend.catalog.table.status"|trans }}</th>
+                                    <th>{{ "backend.catalog.table.edit"|trans }}</th>
+                                    <th>{{ "backend.catalog.table.delete"|trans }}</th>
                                 {% endif %}
-                                <th>{{ "backend.blog.table.preview"|trans }}</th>
                                 </thead>
                                 <tbody>
-                                {% for blogPost in blogPosts|filter(blogPost => not blogPost.deleted)  %}
+                                {% for product in catalog  %}
                                     <tr>
                                         {% if is_granted("ROLE_EDITORIAL") %}
-                                            <td><input type="checkbox" class="chkgrp" name="chkgrp[]" value="{{ blogPost.id }}"></td>
+                                            <td><input type="checkbox" class="chkgrp" name="chkgrp[]" value="{{ product.id }}"></td>
                                         {% endif %}
-                                        <td>{{ blogPost.titre }}</td>
-                                        <td>{{ blogPost.createdAt|date("d/m/y h:i:s") }}</td>
-                                        <td>{{ blogPost.plubishedAt|date("d/m/y h:i:s") }}</td>
-                                        <td><a class="btn btn-primary" href="{{ path('app_admin_edit_blogPosts',{"id":blogPost.id}) }}"><i class="fa fa-edit"></i></a></td>
+                                        <td>{{ product.name }}</td>
+                                        <!-- <td>{{ product.brand }}</td> -->
+                                        <td>{{ product.category }}</td>
+                                        <!-- <td>{{ product.quantity }}</td> -->
+                                        <td class="text-center">
+                                            {% if product.quantity > 4 %}
+                                                +4
+                                            {% else %}
+                                                {{ product.quantity }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">{{ product.origin }}</td>
+                                        <td>{{ product.dot }}</td>
+                                        <td><!-- {{ product.price }} -->N.D</td>
                                         {% if is_granted("ROLE_EDITORIAL") %}
                                             <td>
-                                                {%  if blogPost.valid %}
-                                                    <a class="btn btn-success activate-link" href="{{ path('app_admin_changevalidite_blogPost', {'id': blogPost.id}) }}"> <i class="fa fa-check"></i></a>
+                                                {%  if product.published %}
+                                                    <a class="btn btn-success activate-link" href="{{ path('app_admin_disable_catalog', {'id': product.id}) }}"> <i class="fa fa-check"></i></a>
                                                 {% else %}
-                                                    <a class="btn btn-warning activate-link" href="{{ path('app_admin_changevalidite_blogPost', {'id': blogPost.id}) }}"> <i class="fa fa-times"></i></a>
+                                                    <a class="btn btn-warning activate-link" href="{{ path('app_admin_enable_catalog', {'id': product.id}) }}"> <i class="fa fa-times"></i></a>
                                                 {% endif %}
                                             </td>
-                                            <td><a href="{{ path('app_admin_delete_blogPost', {'id': blogPost.id}) }}" class="btn btn-danger disable-btn del-link" type="submit" ><i class="fa fa-trash"></i></a></td>
+                                            <td><a class="btn btn-primary" href="{{ path('app_admin_edit_catalog',{'id':product.id}) }}"><i class="fa fa-edit"></i></a></td>
+                                            <td><a href="{{ path('app_admin_delete_catalog', {'id': product.id}) }}" class="btn btn-danger disable-btn del-link" type="submit" ><i class="fa fa-trash"></i></a></td>
                                         {% endif %}
-                                        <td>
-                                            <a href="{{ path('app_admin_preview_blogpost', {'id': blogPost.id}) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

@@ -25,7 +25,7 @@
     <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet"/>
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset('build/css/custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('build/css/custom.css') }}" rel="stylesheet">
     <!-- Datatables -->
     <link href="{{ asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <!-- PNotify -->
@@ -103,18 +103,21 @@
     <!-- Summernote -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
-        var dataminetables = $('.dataminetables').dataTable({
-            "columnDefs": [
-                {"orderable": false, "targets": 0}
-            ]
+        $(document).ready(function() {
+            var dataminetables = $('.dataminetables').DataTable({
+                "columnDefs": [
+                    {"orderable": false, "targets": 0}
+                ]
+            });
+            //regExSearch = '^\\s' + this.value +'\\s*$';
+            //dataminetables.columns(1).search(regExSearch, true, false).draw();
+
+            var datasorttables = $('.dataminetables').DataTable();
+
+            var datanotminetables = $('.datanotminetables').dataTable({});
+
+            var datanotsorttables = $('.datanotminetables').DataTable();
         });
-
-        var datasorttables = $('.dataminetables').DataTable();
-
-        var datanotminetables = $('.datanotminetables').dataTable({
-        });
-
-        var datanotsorttables = $('.datanotminetables').DataTable();
 
 
         $(document).on("click",".activate-link",function (e) {

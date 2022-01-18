@@ -53,10 +53,16 @@ class Categorie
      */
     private $blogPosts;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Catalog::class, mappedBy="category")
+     */
+    private $catalogs;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->blogPosts = new ArrayCollection();
+        $this->catalogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -171,6 +177,36 @@ class Categorie
         if ($this->blogPosts->contains($blogPost)) {
             $this->blogPosts->removeElement($blogPost);
             $blogPost->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Catalog[]
+     */
+    public function getCatalogs(): Collection
+    {
+        return $this->catalogs;
+    }
+
+    public function addCatalog(Catalog $catalog): self
+    {
+        if (!$this->catalogs->contains($catalog)) {
+            $this->catalogs[] = $catalog;
+            $catalog->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCatalog(Catalog $catalog): self
+    {
+        if ($this->catalogs->removeElement($catalog)) {
+            // set the owning side to null (unless already changed)
+            if ($catalog->getCategory() === $this) {
+                $catalog->setCategory(null);
+            }
         }
 
         return $this;
