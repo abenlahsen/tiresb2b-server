@@ -81,7 +81,7 @@ backend:
       preview: Visualiser
   catalog:
     listing: Listing
-    list_items: Liste des pneus en stock à date DD/MM/YYYY HH:MM:SS
+    list_items: Liste des pneus en stock à date
     table:
       reference: Dimension
       brand: Marque & Profil
@@ -96,3 +96,6 @@ backend:
       title: Catégorie
       cancel: Annuler
       save: Enregister
+  login:
+    all_rights : Tous les droits sont réservés
+    website : www.autolinkb2b.com

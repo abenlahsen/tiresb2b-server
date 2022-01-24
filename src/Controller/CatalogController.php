@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Catalog;
 use App\Form\CatalogFormType;
 use App\Repository\CatalogRepository;
+use App\Repository\JobLogsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,13 +20,19 @@ class CatalogController extends BaseController
     private $_catalogRepository;
 
     /**
+     * @var JobLogsRepository
+     */
+    private $_jobLogsRepository;
+
+    /**
      * @var EntityManagerInterface
      */
     private $_entityManager;
 
-    public function __construct(CatalogRepository $catalogRepository, EntityManagerInterface $entityManager)
+    public function __construct(CatalogRepository $catalogRepository, JobLogsRepository $jobLogsRepository, EntityManagerInterface $entityManager)
     {
         $this->_catalogRepository = $catalogRepository;
+        $this->_jobLogsRepository = $jobLogsRepository;
         $this->_entityManager = $entityManager;
     }
 
@@ -37,8 +44,9 @@ class CatalogController extends BaseController
      */
     public function index()
     {
+        $jobLog = $this->_jobLogsRepository->getLatestLog();
         $catalog = $this->_catalogRepository->findAll();
-        return $this->render("admin/catalog/index.html.twig", ["catalog" => $catalog]);
+        return $this->render("admin/catalog/index.html.twig", ["catalog" => $catalog, 'jobLog' => $jobLog]);
     }
 
     /**

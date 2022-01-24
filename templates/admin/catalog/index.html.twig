@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>{{ "backend.catalog.list_items"|trans }}</h2>
+                        <h2>{{ "backend.catalog.list_items"|trans }} du {{ jobLog.moment|date("d/m/Y") }}</h2>
                         <!--
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a href="{{ path('app_admin_new_catalog') }}" class="btn btn-success">{{ "backend.global.btn_add"|trans }}</a>
@@ -25,6 +25,7 @@
                     </div>
                     <div class="x_content">
                         <div class="row">
+                            <!--
                             <form action="{{ path('app_admin_groupaction_blogPost') }}" id="grpaction" method="post" name="grpaction">
                                 <div class="form-group form-inline">
                                     {%  if is_granted("ROLE_EDITORIAL") %}
@@ -37,8 +38,8 @@
                                         <button class="btn btn-primary" type="submit">{{ "backend.global.action_select.submit"|trans }}</button>
                                     {% endif %}
                                 </div>
-
                             </form>
+                            -->
                             <table id="example" class="display table table-striped table-bordered {% if is_granted("ROLE_EDITORIAL") %} dataminetables {% else %} datanotminetables {% endif %}" >
                                 <thead>
                                 {% if is_granted("ROLE_EDITORIAL") %}
