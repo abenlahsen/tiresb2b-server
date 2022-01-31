@@ -23,7 +23,7 @@ backend:
   menu:
     home: Accueil
     user: Utilisateur
-    manage: Gérer
+    manage: Stock
     categories: Catégories
     catalog: Catalogue
     blog: Blog

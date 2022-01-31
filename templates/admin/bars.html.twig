@@ -36,15 +36,14 @@
                                 <li><a href="{{ path('app_admin_users') }}">{{ "backend.menu.manage"|trans }}</a></li>
                             </ul>
                         </li>
-                        {% endif %}
-                        {% if is_granted("ROLE_WRITER") %}
-
                         <!-- CATEGORIE menu -->
                         <li><a><i class="fa fa-bookmark"></i>{{ "backend.menu.categories"|trans }} <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <li><a href="{{ path('app_admin_categories') }}">{{ "backend.menu.manage"|trans }}</a></li>
                             </ul>
                         </li>
+                        {% endif %}
+                        {% if is_granted("ROLE_WRITER") %}
 
                         <!-- CATALOG menu -->
                         <li><a><i class="fa fa-database"></i>{{ "backend.menu.catalog"|trans }} <span class="fa fa-chevron-down"></span></a>

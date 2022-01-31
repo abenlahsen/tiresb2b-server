@@ -43,11 +43,11 @@
                             <table id="example" class="display table table-striped table-bordered {% if is_granted("ROLE_EDITORIAL") %} dataminetables {% else %} datanotminetables {% endif %}" >
                                 <thead>
                                 {% if is_granted("ROLE_EDITORIAL") %}
-                                    <th><input type="checkbox" id="select_all" name="select_all"></th>
+                                    <!-- <th><input type="checkbox" id="select_all" name="select_all"></th> -->
                                 {% endif %}
                                 <th>{{ "backend.catalog.table.reference"|trans }}</th>
                                 <!-- <th>{{ "backend.catalog.table.brand"|trans }}</th> -->
-                                <th>{{ "backend.category.form.title"|trans }}</th>
+                                <!-- <th>{{ "backend.category.form.title"|trans }}</th> -->
                                 <th>{{ "backend.catalog.table.qty"|trans }}</th>
                                 <th>{{ "backend.catalog.table.origin"|trans }}</th>
                                 <th>{{ "backend.catalog.table.dot"|trans }}</th>
@@ -63,11 +63,11 @@
                                 {% for product in catalog  %}
                                     <tr>
                                         {% if is_granted("ROLE_EDITORIAL") %}
-                                            <td><input type="checkbox" class="chkgrp" name="chkgrp[]" value="{{ product.id }}"></td>
+                                            <!-- <td><input type="checkbox" class="chkgrp" name="chkgrp[]" value="{{ product.id }}"></td> -->
                                         {% endif %}
                                         <td>{{ product.name }}</td>
                                         <!-- <td>{{ product.brand }}</td> -->
-                                        <td>{{ product.category }}</td>
+                                        <!-- <td>{{ product.category }}</td> -->
                                         <!-- <td>{{ product.quantity }}</td> -->
                                         <td class="text-center">
                                             {% if product.quantity > 4 %}

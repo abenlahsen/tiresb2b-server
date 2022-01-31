@@ -31,19 +31,19 @@ final class Version20200811134927 extends AbstractMigration
         $this->addSql('CREATE TABLE IF NOT EXISTS user (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', nom_complet VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, valid TINYINT(1) NOT NULL, deleted TINYINT(1) NOT NULL, password VARCHAR(255) NOT NULL, admin TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_8D93D649F85E0677 (username), UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE IF NOT EXISTS reset_password_request (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, selector VARCHAR(20) NOT NULL, hashed_token VARCHAR(100) NOT NULL, requested_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', expires_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_7CE748AA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE IF NOT EXISTS role (id INT AUTO_INCREMENT NOT NULL, role_name VARCHAR(100) NOT NULL, libelle VARCHAR(100) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        //$this->addSql('ALTER TABLE blog_post ADD CONSTRAINT FK_BA5AE01DF675F31B FOREIGN KEY (author_id) REFERENCES user (id)');
-        //$this->addSql('ALTER TABLE blog_post ADD CONSTRAINT FK_BA5AE01D61220EA6 FOREIGN KEY (creator_id) REFERENCES user (id)');
-        //$this->addSql('ALTER TABLE blog_post_categorie ADD CONSTRAINT FK_AC64037AA77FBEAF FOREIGN KEY (blog_post_id) REFERENCES blog_post (id) ON DELETE CASCADE');
-        //$this->addSql('ALTER TABLE blog_post_categorie ADD CONSTRAINT FK_AC64037ABCF5E72D FOREIGN KEY (categorie_id) REFERENCES categorie (id) ON DELETE CASCADE');
-        //$this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5ECA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        //$this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5ECA77FBEAF FOREIGN KEY (blog_post_id) REFERENCES blog_post (id)');
-        //$this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5EC381CDA7C FOREIGN KEY (old_post_id) REFERENCES old_post (id)');
-        //$this->addSql('ALTER TABLE old_post ADD CONSTRAINT FK_7217ED28B03A8386 FOREIGN KEY (created_by_id) REFERENCES user (id)');
-        //$this->addSql('ALTER TABLE old_post ADD CONSTRAINT FK_7217ED28F675F31B FOREIGN KEY (author_id) REFERENCES user (id)');
-        //$this->addSql('ALTER TABLE old_post_categorie ADD CONSTRAINT FK_9E9BAB81381CDA7C FOREIGN KEY (old_post_id) REFERENCES old_post (id) ON DELETE CASCADE');
-        //$this->addSql('ALTER TABLE old_post_categorie ADD CONSTRAINT FK_9E9BAB81BCF5E72D FOREIGN KEY (categorie_id) REFERENCES categorie (id) ON DELETE CASCADE');
-        //$this->addSql('ALTER TABLE categorie ADD CONSTRAINT FK_497DD6345CBD743C FOREIGN KEY (categorie_parente_id) REFERENCES categorie (id)');
-        //$this->addSql('ALTER TABLE reset_password_request ADD CONSTRAINT FK_7CE748AA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE blog_post ADD CONSTRAINT FK_BA5AE01DF675F31B FOREIGN KEY (author_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE blog_post ADD CONSTRAINT FK_BA5AE01D61220EA6 FOREIGN KEY (creator_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE blog_post_categorie ADD CONSTRAINT FK_AC64037AA77FBEAF FOREIGN KEY (blog_post_id) REFERENCES blog_post (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE blog_post_categorie ADD CONSTRAINT FK_AC64037ABCF5E72D FOREIGN KEY (categorie_id) REFERENCES categorie (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5ECA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5ECA77FBEAF FOREIGN KEY (blog_post_id) REFERENCES blog_post (id)');
+        $this->addSql('ALTER TABLE historique ADD CONSTRAINT FK_EDBFD5EC381CDA7C FOREIGN KEY (old_post_id) REFERENCES old_post (id)');
+        $this->addSql('ALTER TABLE old_post ADD CONSTRAINT FK_7217ED28B03A8386 FOREIGN KEY (created_by_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE old_post ADD CONSTRAINT FK_7217ED28F675F31B FOREIGN KEY (author_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE old_post_categorie ADD CONSTRAINT FK_9E9BAB81381CDA7C FOREIGN KEY (old_post_id) REFERENCES old_post (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE old_post_categorie ADD CONSTRAINT FK_9E9BAB81BCF5E72D FOREIGN KEY (categorie_id) REFERENCES categorie (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE categorie ADD CONSTRAINT FK_497DD6345CBD743C FOREIGN KEY (categorie_parente_id) REFERENCES categorie (id)');
+        $this->addSql('ALTER TABLE reset_password_request ADD CONSTRAINT FK_7CE748AA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
     }
 
     public function down(Schema $schema) : void
